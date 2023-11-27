@@ -95,4 +95,9 @@ main {
     display: flex;
     justify-content: space-between;
     color: var(--info-text-color);
+    font-size: .75rem;
+}
+.informacoes a {
+    text-decoration: none;
+    color: var(--info-text-color);
 }
