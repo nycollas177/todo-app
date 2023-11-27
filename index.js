@@ -141,7 +141,7 @@ app.get('/limpartarefas',(req,res)=>{
 const conexao = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '.caua2023.',
+    password: 'root',
     database: 'todoapp',
     port: 3306
 })
