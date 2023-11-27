@@ -79,7 +79,7 @@ app.get("/completas",(req,res)=>{
         res.render('completas',{ tarefas, quantidadeTarefas })
     })
 
-})
+}) 
 app.post('/completar',(req,res)=>{
     const id = req.body.id;
     const sql = `
