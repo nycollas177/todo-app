@@ -30,6 +30,17 @@ app.get("/",(req,res)=>{
     })
     
 })
+app.post('/completar',(req,res)=>{
+    const id = req.body.id;
+    const sql = `
+        UPDATE tarefas set completa = '1' WHERE tarefas.id = ${id}
+    `
+    conexao.query(sql,(error,data)=>{
+        if(error) return console.log(error)
+        res.redirect('/')
+    })
+
+})
 app.post("/criar",(req,res)=>{
     const descricao = req.body.descricao;
     const completa = 0;
