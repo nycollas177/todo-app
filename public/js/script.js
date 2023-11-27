@@ -1,5 +1,16 @@
-function completarTarefas(id){
+function completarTarefa(id){
     fetch('http://localhost:3000/completar',{
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
+
+    window.location.reload()
+}
+function descompletarTarefa(id){
+    fetch('http://localhost:3000/descompletar',{
         method: 'POST',
         headers: {
             'Content-Type':'application/json'

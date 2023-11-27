@@ -26,7 +26,12 @@ app.get("/",(req,res)=>{
                 completa: data.completa == 0 ? false : true
             }
         })
-        res.render('home',{tarefas})
+        const tarefasAtivas = tarefas.filter((tarefa)=>{
+            return tarefa.completa == false && tarefa
+        })
+
+        const quantidadeTarefasAtivas = tarefasAtivas.length;
+        res.render('home',{tarefas,quantidadeTarefasAtivas})
     })
     
 })
@@ -53,6 +58,17 @@ app.post("/criar",(req,res)=>{
         if (erro) return console.log(erro);
         res.redirect('/')
     })
+})
+app.post('/descompletar',(req,res)=>{
+    const id = req.body.id;
+    const sql = `
+        UPDATE tarefas set completa = '0' WHERE tarefas.id = ${id}
+    `
+    conexao.query(sql,(error,data)=>{
+        if(error) return console.log(error)
+        res.redirect('/')
+    })
+
 })
 
 const conexao = mysql.createConnection({
