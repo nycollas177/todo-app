@@ -8,9 +8,7 @@ app.engine("handlebars",exphbs.engine());
 app.set("view engine", "handlebars")
 app.use(express.static('public'))
 
-app.listen(3000, ()=>{
-    console.log("Server rodando na porta 3000, http://localhost:3000")
-});
+
 const conexao = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -21,4 +19,14 @@ const conexao = mysql.createConnection({
 
 app.get("/",(req,res)=>{
     res.render('home')
+})
+
+conexao.connect((erro)=>{
+    if (erro){
+        return console.log(erro)
+    }
+    console.log('Estou conectado ao MySQL')
+    app.listen(3000, ()=>{
+        console.log("Server rodando na porta 3000, http://localhost:3000")
+    });
 })
