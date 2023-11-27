@@ -14,7 +14,7 @@
                     <label for="tarefa-{{this.id}}">{{this.descricao}}</label>
                </div>
                {{/if}}
-                <button>
+                <button onclick="excluirTarefa({{this.id}})">
                     <img src="/images/x-icon.png" alt="Ícone de X para excluir uma tarefa">
                 </button>
             </form>
