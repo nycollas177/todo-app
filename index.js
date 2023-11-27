@@ -14,9 +14,7 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 /* Rotas */
-app.get("/ativas",(req,res)=>{
 
-})
 app.get("/",(req,res)=>{
     const sql = `SELECT * FROM tarefas`;
     conexao.query(sql,(error,datas)=>{
@@ -37,6 +35,50 @@ app.get("/",(req,res)=>{
         res.render('home',{tarefas,quantidadeTarefasAtivas})
     })
     
+})
+app.get("/ativas",(req,res)=>{
+    const sql = `
+        SELECT * FROM tarefas 
+        WHERE completa = 0    
+    `
+    conexao.query(sql,(erro,dados)=> {
+        if(erro) return console.log(erro)
+
+        const tarefas = dados.map((data)=>{
+            return {
+                id: data.id,
+                descricao: data.descricao,
+                completa: false 
+            }
+        })
+
+
+        const quantidadeTarefas = tarefas.length;
+        res.render('ativas',{ tarefas, quantidadeTarefas })
+    })
+
+})
+app.get("/completas",(req,res)=>{
+    const sql = `
+        SELECT * FROM tarefas 
+        WHERE completa = 1    
+    `
+    conexao.query(sql,(erro,dados)=> {
+        if(erro) return console.log(erro)
+
+        const tarefas = dados.map((data)=>{
+            return {
+                id: data.id,
+                descricao: data.descricao,
+                completa: true 
+            }
+        })
+
+
+        const quantidadeTarefas = tarefas.length;
+        res.render('completas',{ tarefas, quantidadeTarefas })
+    })
+
 })
 app.post('/completar',(req,res)=>{
     const id = req.body.id;
