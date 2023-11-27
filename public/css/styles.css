@@ -60,6 +60,11 @@ header div div {
     justify-content: space-between;
     margin-bottom: 2.5rem;
 }
+header button {
+    background: none;
+    cursor: pointer;
+    border: none;
+}
 header div h1 {
     color: #fff;
     text-transform: uppercase;
