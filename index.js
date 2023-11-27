@@ -127,6 +127,16 @@ app.post('/excluir',(req,res)=>{
         res.redirect('/')
     })
 })
+app.get('/limpartarefas',(req,res)=>{
+    const sql = `
+        DELETE FROM tarefas    
+    `
+    conexao.query(sql,(error)=>{
+        if(error) return console.log(error)
+        res.redirect('/')
+    })
+})
+
 
 const conexao = mysql.createConnection({
     host: 'localhost',
