@@ -15,6 +15,19 @@ app.use(express.json())
 
 /* Rotas */
 app.get("/",(req,res)=>{
+    const sql = `SELECT * FROM tarefas`;
+    conexao.query(sql,(error,datas)=>{
+        if (error) return console.log(error);
+
+        const tarefas = datas.map((data)=>{
+            return {
+                id: data.id,
+                descricao: data.descricao,
+                completa: data.completa == 0 ? false : true
+            }
+        })
+        console.log(tarefas)
+    })
     res.render('home')
 })
 app.post("/criar",(req,res)=>{
