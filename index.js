@@ -14,6 +14,9 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 /* Rotas */
+app.get("/ativas",(req,res)=>{
+
+})
 app.get("/",(req,res)=>{
     const sql = `SELECT * FROM tarefas`;
     conexao.query(sql,(error,datas)=>{
